@@ -1,6 +1,6 @@
 # Movie database
 
-https://gifted-jones-074a29.netlify.app/
+https://movie-database-mikeh100.netlify.app/
 
 ## Setup project locally
 ```
