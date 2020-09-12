@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-container flex-wrap">
+  <div class="flex flex-wrap justify-center pt-8">
     <div v-for="movie in movies" :key="movie.title">
       <MovieCard :movie="movie" />
     </div>
@@ -31,8 +31,3 @@ export default Vue.extend({
   methods: {}
 })
 </script>
-<style lang="scss">
-.movie-container {
-  display: flex;
-}
-</style>

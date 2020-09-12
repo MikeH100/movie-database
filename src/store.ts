@@ -9,19 +9,36 @@ export default new Vuex.Store({
     movies: [
       {
         id: 'movie1',
-        title: 'title 1',
-        description: 'description 1'
+        title: 'Jurassic Park',
+        description:
+          "A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+        tags: ['Action', 'Drama']
       },
       {
         id: 'movie2',
-        title: 'title 2',
-        description: 'description 2'
+        title: 'Back to the Future',
+        description:
+          'Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.',
+        tags: ['Action', 'Fantasy']
       }
-    ] as Movie[]
+    ] as Movie[],
+    genres: [
+      'Action',
+      'Comedy',
+      'Drama',
+      'Fantasy',
+      'Horror',
+      'Mystery',
+      'Romance',
+      'Thriller'
+    ]
   },
   getters: {
     movies: state => {
       return state.movies
+    },
+    genres: state => {
+      return state.genres
     }
   },
   mutations: {
@@ -35,6 +52,7 @@ export default new Vuex.Store({
       if (selectedMovie) {
         selectedMovie.title = movie.title
         selectedMovie.description = movie.description
+        selectedMovie.tags = movie.tags
       }
     }
   },

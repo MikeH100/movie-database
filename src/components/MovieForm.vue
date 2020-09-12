@@ -1,16 +1,14 @@
 <template>
   <div class="add-movie-container">
-    <form class="w-full max-w-sm">
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
-          <label
-            class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-            for="inline-title"
-          >
-            Title
-          </label>
-        </div>
-        <div class="md:w-2/3">
+    <form class="w-full p-8">
+      <div class="md:flex md:items-center">
+        <label
+          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          for="inline-title"
+        >
+          Title
+        </label>
+        <span class="container h-10 mb-8">
           <input
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
             id="inline-title"
@@ -21,18 +19,16 @@
           <p v-if="errors.title" class="text-red-500 text-xs italic">
             {{ errors.title }}
           </p>
-        </div>
+        </span>
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
-          <label
-            class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-            for="inline-description"
-          >
-            Description
-          </label>
-        </div>
-        <div class="md:w-2/3">
+      <div class="md:flex md:items-center">
+        <label
+          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          for="inline-description"
+        >
+          Description
+        </label>
+        <span class="container h-10 mb-8">
           <input
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
             id="inline-description"
@@ -40,36 +36,45 @@
             placeholder="Description"
             v-model="description"
           />
-          <p v-if="errors.description" class="text-red-500 text-xs italic">
+          <span v-if="errors.description" class="text-red-500 text-xs italic">
             {{ errors.description }}
-          </p>
-        </div>
+          </span>
+        </span>
       </div>
-      <div class="md:flex md:items-center">
-        <div class="md:w-1/3"></div>
-        <div class="md:w-2/3">
-          <button
-            class="shadow bg-teal-500 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-            type="button"
-            @click="checkForm"
-          >
-            Add movie
-          </button>
+      <div class="md:flex md:items-center justify-center mb-6">
+        <div v-for="(value, key, index) in genres" :key="index">
+          <input class="mr-2" type="checkbox" :id="key" v-model="genres[key]" />
+          <label class="mr-2 text-gray-500 font-bold" :for="key">{{
+            key
+          }}</label>
         </div>
+        <span v-if="errors.genre" class="text-red-500 text-xs italic">
+          {{ errors.genre }}
+        </span>
+      </div>
+      <div class="md:flex md:items-center justify-center">
+        <button
+          class="shadow bg-teal-500 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+          type="button"
+          @click="checkForm"
+        >
+          Add movie
+        </button>
       </div>
     </form>
   </div>
 </template>
-
 <script lang="ts">
 import Vue from 'vue'
 import { Movie, Errors } from '@/types/movies'
+import { mapGetters } from 'vuex'
 
 type DataType = {
   movie: Movie
   title: string
   description: string
   errors: Errors
+  selectedGenres: Array<string>
 }
 
 export default Vue.extend({
@@ -84,24 +89,51 @@ export default Vue.extend({
       title: '',
       description: '',
       errors: {} as Errors,
-      movie: {} as Movie
+      movie: {} as Movie,
+      selectedGenres: [] as Array<string>
+    }
+  },
+  computed: {
+    genres(): Array<string> {
+      return this.$store.state.genres.reduce(
+        (obj: Object, genre: string) => ({
+          ...obj,
+          [genre]: false
+        }),
+        {}
+      )
     }
   },
   mounted() {
     if (this.selectedMovie) {
       this.title = this.selectedMovie.title
       this.description = this.selectedMovie.description
+      for (let key in this.genres) {
+        if (this.selectedMovie.tags.find(tag => tag === key)) {
+          let value = (this.genres[key] = 'true')
+        }
+      }
     }
   },
   methods: {
     checkForm() {
-      if (this.title && this.description) {
-        this.movie = {
-          id: this.selectedMovie ? this.selectedMovie.id : '',
-          title: this.title,
-          description: this.description
+      this.selectedGenres = []
+      for (let key in this.genres) {
+        let value = this.genres[key]
+        if (value) {
+          this.selectedGenres.push(key)
         }
-        this.$emit('movie', this.movie)
+      }
+      if (this.title && this.description && this.selectedGenres.length !== 0) {
+        if (this.selectedGenres.length) {
+          this.movie = {
+            id: this.selectedMovie ? this.selectedMovie.id : '',
+            title: this.title,
+            description: this.description,
+            tags: this.selectedGenres
+          }
+          this.$emit('movie', this.movie)
+        }
       }
 
       this.errors = {}
@@ -111,6 +143,9 @@ export default Vue.extend({
       }
       if (!this.description) {
         this.errors.description = 'Description required.'
+      }
+      if (this.selectedGenres.length === 0) {
+        this.errors.genre = 'Genre required'
       }
     }
   }
