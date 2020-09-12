@@ -4,7 +4,7 @@ https://gifted-jones-074a29.netlify.app/
 
 ## Setup project locally
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and runs for local development
