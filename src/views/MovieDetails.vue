@@ -15,11 +15,11 @@ type DataType = {
 
 export default Vue.extend({
   name: 'MovieDetails',
-  data() {
+  data(): DataType {
     return {
       title: '',
       description: '',
-      errors: {} as Errors
+      errors: {}
     }
   },
   components: {

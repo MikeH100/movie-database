@@ -18,8 +18,10 @@ type DataType = {
 
 export default Vue.extend({
   name: 'MoviesList',
-  data() {
-    return {}
+  data(): DataType {
+    return {
+      movies: []
+    }
   },
   mounted() {},
   components: {

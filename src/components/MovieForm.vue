@@ -85,13 +85,18 @@ export default Vue.extend({
       type: Object as () => Movie
     }
   },
-  data() {
+  data(): DataType {
     return {
       title: '',
       description: '',
-      errors: {} as Errors,
-      movie: {} as Movie,
-      selectedGenres: [] as Array<string>
+      errors: {},
+      movie: {
+        id: '',
+        title: '',
+        description: '',
+        tags: []
+      },
+      selectedGenres: []
     }
   },
   computed: {
