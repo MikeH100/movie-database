@@ -3,6 +3,7 @@ export type Movie = {
   title: string
   description: string
   tags: Array<string>
+  img?: string
 }
 
 export type Errors = {

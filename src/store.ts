@@ -12,14 +12,18 @@ export default new Vuex.Store({
         title: 'Jurassic Park',
         description:
           "A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
-        tags: ['Action', 'Drama']
+        tags: ['Action', 'Drama'],
+        img:
+          'https://images-na.ssl-images-amazon.com/images/I/51EeZ5y%2Bu5L._AC_SL1024_.jpg'
       },
       {
         id: 'movie2',
         title: 'Back to the Future',
         description:
           'Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.',
-        tags: ['Action', 'Fantasy']
+        tags: ['Action', 'Fantasy'],
+        img:
+          'https://academycenter.org/wp-content/uploads/2018/12/back-to-the-future-trilogy-1122951-1280x0.jpg'
       }
     ] as Movie[],
     genres: [

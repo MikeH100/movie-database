@@ -29,8 +29,8 @@
           Description
         </label>
         <span class="container h-10 mb-8">
-          <input
-            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
+          <textarea
+            class="bg-gray-200 resize-none appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
             id="inline-description"
             type="text"
             placeholder="Description"
@@ -58,7 +58,8 @@
           type="button"
           @click="checkForm"
         >
-          Add movie
+          <span v-if="selectedMovie">Edit movie</span>
+          <span v-else>Add movie</span>
         </button>
       </div>
     </form>
@@ -105,6 +106,7 @@ export default Vue.extend({
     }
   },
   mounted() {
+    console.log('selectedMovie', this.selectedMovie)
     if (this.selectedMovie) {
       this.title = this.selectedMovie.title
       this.description = this.selectedMovie.description
@@ -124,7 +126,12 @@ export default Vue.extend({
           this.selectedGenres.push(key)
         }
       }
-      if (this.title && this.description && this.selectedGenres.length !== 0) {
+      if (
+        this.title &&
+        this.description &&
+        this.description.length < 200 &&
+        this.selectedGenres.length !== 0
+      ) {
         if (this.selectedGenres.length) {
           this.movie = {
             id: this.selectedMovie ? this.selectedMovie.id : '',
@@ -143,6 +150,10 @@ export default Vue.extend({
       }
       if (!this.description) {
         this.errors.description = 'Description required.'
+      }
+      console.log(this.description.length)
+      if (this.description.length > 200) {
+        this.errors.description = 'Number of characters cannot exceed 200'
       }
       if (this.selectedGenres.length === 0) {
         this.errors.genre = 'Genre required'

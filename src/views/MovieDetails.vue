@@ -25,9 +25,6 @@ export default Vue.extend({
   components: {
     MovieForm
   },
-  mounted() {
-    console.log('test', this.$route.params.id)
-  },
   computed: {
     movie() {
       return this.$store.state.movies.find(

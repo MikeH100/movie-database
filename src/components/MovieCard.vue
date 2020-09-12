@@ -1,14 +1,18 @@
 <template>
   <div
     @click="$router.push('/movie-details/' + movie.id)"
-    class="max-w-sm rounded overflow-hidden w-80 m-4 shadow-lg cursor-pointer"
+    class="max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
   >
-    <img class="w-full" src="../assets/images/card-top.jpg" alt="Movie" />
+    <img
+      class="w-full"
+      :src="movie.img ? movie.img : '/img/card-top.5183bb28.jpg'"
+      alt="Movie"
+    />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">
         {{ movie.title }}
       </div>
-      <p class="text-gray-700 height text-base">
+      <p class="text-gray-700 h-30 text-base">
         {{ movie.description }}
       </p>
     </div>
@@ -39,6 +43,6 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .height {
-  height: 120px;
+  height: 500px;
 }
 </style>
