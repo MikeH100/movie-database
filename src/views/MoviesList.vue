@@ -10,7 +10,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import MovieCard from '@/components/MovieCard.vue'
-import { Movie } from '@/types/movies'
+import { Movie } from '@/types/types'
 
 type DataType = {
   movies: Movie[]
@@ -18,11 +18,6 @@ type DataType = {
 
 export default Vue.extend({
   name: 'MoviesList',
-  data(): DataType {
-    return {
-      movies: []
-    }
-  },
   mounted() {},
   components: {
     MovieCard

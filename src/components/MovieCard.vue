@@ -1,11 +1,11 @@
 <template>
   <div
-    @click="$router.push('/movie-details/' + movie.id)"
+    @click="$router.push(movieDetailsRoute + movie.id)"
     class="max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
   >
     <img
       class="w-full"
-      :src="movie.img ? movie.img : '/img/card-top.5183bb28.jpg'"
+      :src="movie.img ? movie.img : defaultImage"
       alt="Movie"
     />
     <div class="px-6 py-4">
@@ -29,13 +29,26 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Movie } from '@/types/movies'
+import { Movie } from '@/types/types'
+import Routes from '@/constants/routes'
+
+type DataType = {
+  movieDetailsRoute: string
+  defaultImage: string
+}
 
 export default Vue.extend({
   name: 'MovieCard',
   props: {
     movie: {
       type: Object as () => Movie
+    }
+  },
+  data(): DataType {
+    return {
+      movieDetailsRoute: Routes.MOVIE_DETAILS,
+      defaultImage:
+        'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
     }
   }
 })

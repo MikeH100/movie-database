@@ -4,13 +4,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Movie, Errors } from '@/types/movies'
+import { Movie, Errors } from '@/types/types'
 import MovieForm from '@/components/MovieForm.vue'
+import Routes from '@/constants/routes'
 
 type DataType = {
   title: string
   description: string
   errors: Errors
+  homeRoute: string
 }
 
 export default Vue.extend({
@@ -19,7 +21,8 @@ export default Vue.extend({
     return {
       title: '',
       description: '',
-      errors: {}
+      errors: {},
+      homeRoute: Routes.HOME
     }
   },
   components: {
@@ -28,13 +31,8 @@ export default Vue.extend({
   methods: {
     addMovie(movie: Movie) {
       this.$store.dispatch('addMovie', movie)
-      this.$router.push('/')
+      this.$router.push(this.homeRoute)
     }
   }
 })
 </script>
-<style lang="scss">
-.movie-container {
-  display: flex;
-}
-</style>

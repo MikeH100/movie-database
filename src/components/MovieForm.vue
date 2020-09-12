@@ -28,7 +28,7 @@
         >
           Description
         </label>
-        <span class="container h-10 mb-8">
+        <span class="container h-16 mb-8">
           <textarea
             class="bg-gray-200 resize-none appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
             id="inline-description"
@@ -67,7 +67,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { Movie, Errors } from '@/types/movies'
+import { Movie, Errors } from '@/types/types'
 import { mapGetters } from 'vuex'
 
 type DataType = {
@@ -111,7 +111,6 @@ export default Vue.extend({
     }
   },
   mounted() {
-    console.log('selectedMovie', this.selectedMovie)
     if (this.selectedMovie) {
       this.title = this.selectedMovie.title
       this.description = this.selectedMovie.description
@@ -156,7 +155,6 @@ export default Vue.extend({
       if (!this.description) {
         this.errors.description = 'Description required.'
       }
-      console.log(this.description.length)
       if (this.description.length > 200) {
         this.errors.description = 'Number of characters cannot exceed 200'
       }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Movie } from '@/types/movies'
+import { Movie } from '@/types/types'
 
 Vue.use(Vuex)
 
@@ -24,6 +24,12 @@ export default new Vuex.Store({
         tags: ['Action', 'Fantasy'],
         img:
           'https://academycenter.org/wp-content/uploads/2018/12/back-to-the-future-trilogy-1122951-1280x0.jpg'
+      },
+      {
+        id: 'movie3',
+        title: 'Tokyo',
+        description: 'Tokyo a movie about Tokyo',
+        tags: ['Action']
       }
     ] as Movie[],
     genres: [
