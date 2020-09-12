@@ -1,12 +1,23 @@
 # Movie database
 
+https://gifted-jones-074a29.netlify.app/
 
-## Project setup
+## Setup project locally
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and runs for local development
 ```
 yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Runs lint
+```
+yarn lint
 ```
