@@ -1,8 +1,13 @@
 <template>
   <div
     @click="$router.push(movieDetailsRoute + movie.id)"
-    class="max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
+    class="relative max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
   >
+    <button
+      class="absolute m-2 bg-teal-500 hover:bg-teal-400 text-white text-xs font-bold py-2 px-4 rounded right-0"
+    >
+      Edit
+    </button>
     <img
       class="w-full"
       :src="movie.img ? movie.img : defaultImage"

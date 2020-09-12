@@ -8,7 +8,7 @@
     </a>
     <nav>
       <button
-        class="bg-transparent hover:bg-teal-700 text-white-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-end"
+        class="bg-transparent hover:bg-teal-700 text-white font-bold py-2 px-4 border border-white-700 rounded content-end"
         @click="$router.push(addMovieRoute)"
       >
         Add movie
