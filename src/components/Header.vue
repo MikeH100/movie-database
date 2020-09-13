@@ -1,7 +1,7 @@
 <template>
-  <header class="flex justify-between flex-wrap bg-teal-500 p-6 mb-8">
+  <header class="flex justify-between flex-wrap bg-teal-500 p-6">
     <a
-      @click="$router.push(homeRoute)"
+      @click="redirectHome"
       class="cursor-pointer text-white text-xl font-semibold"
     >
       Movie database
@@ -32,6 +32,12 @@ export default Vue.extend({
     return {
       homeRoute: Routes.HOME,
       addMovieRoute: Routes.ADD_MOVIE
+    }
+  },
+  methods: {
+    redirectHome() {
+      this.$store.dispatch('resetMovies')
+      this.$router.push(this.homeRoute)
     }
   }
 })

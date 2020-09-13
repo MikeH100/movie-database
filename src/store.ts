@@ -32,6 +32,7 @@ export default new Vuex.Store({
         tags: ['Action']
       }
     ] as Movie[],
+    filteredMovies: [] as Movie[],
     genres: [
       'Action',
       'Comedy',
@@ -46,6 +47,9 @@ export default new Vuex.Store({
   getters: {
     movies: state => {
       return state.movies
+    },
+    filteredMovies: state => {
+      return state.filteredMovies
     },
     genres: state => {
       return state.genres
@@ -66,6 +70,15 @@ export default new Vuex.Store({
         selectedMovie.tags = movie.tags
         selectedMovie.img = movie.img
       }
+    },
+    searchMovies(state, searchInput) {
+      const filteredMovies = state.movies.filter(movie =>
+        movie.title.includes(searchInput)
+      )
+      state.filteredMovies = filteredMovies
+    },
+    resetMovies(state) {
+      state.filteredMovies = state.movies
     }
   },
   actions: {
@@ -74,6 +87,12 @@ export default new Vuex.Store({
     },
     editMovie(context, movie) {
       context.commit('editMovie', movie)
+    },
+    searchMovies(context, searchInput) {
+      context.commit('searchMovies', searchInput)
+    },
+    resetMovies(context) {
+      context.commit('resetMovies')
     }
   }
 })

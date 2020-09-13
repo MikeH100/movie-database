@@ -87,7 +87,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Movie, Errors } from '@/types/types'
-import { mapGetters } from 'vuex'
 
 type DataType = {
   movie: Movie

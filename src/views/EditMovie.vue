@@ -1,8 +1,8 @@
 <template>
-  <span>
+  <div class="mt-8">
     Edit Movie
     <MovieForm @movie="editMovie" :selectedMovie="movie" />
-  </span>
+  </div>
 </template>
 
 <script lang="ts">
@@ -41,6 +41,7 @@ export default Vue.extend({
   methods: {
     editMovie(movie: Movie) {
       this.$store.dispatch('editMovie', movie)
+      this.$store.dispatch('resetMovies')
       this.$router.push(this.homeRoute)
     }
   }

@@ -1,7 +1,10 @@
 <template>
-  <div class="flex flex-wrap justify-center">
-    <div v-for="movie in movies" :key="movie.title">
-      <MovieCard :movie="movie" />
+  <div>
+    <Search />
+    <div class="flex flex-wrap justify-center">
+      <div v-for="movie in filteredMovies" :key="movie.title">
+        <MovieCard :movie="movie" />
+      </div>
     </div>
   </div>
 </template>
@@ -10,21 +13,21 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import MovieCard from '@/components/MovieCard.vue'
-import { Movie } from '@/types/types'
+import Search from '@/components/Search.vue'
 
-type DataType = {
-  movies: Movie[]
-}
+import { Movie } from '@/types/types'
 
 export default Vue.extend({
   name: 'MoviesList',
-  mounted() {},
   components: {
-    MovieCard
+    MovieCard,
+    Search
   },
   computed: {
-    ...mapGetters(['movies'])
+    ...mapGetters(['filteredMovies'])
   },
-  methods: {}
+  mounted() {
+    this.$store.dispatch('resetMovies')
+  }
 })
 </script>
