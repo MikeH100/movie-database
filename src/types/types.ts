@@ -10,4 +10,5 @@ export type Errors = {
   title?: string
   description?: string
   genre?: string
+  image?: string
 }

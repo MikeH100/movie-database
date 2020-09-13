@@ -1,6 +1,6 @@
 <template>
   <div class="mt-1">
-    <form class="w-full p-8">
+    <form class="w-full p-2">
       <div class="md:flex md:items-center">
         <label
           class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
@@ -32,13 +32,32 @@
           <textarea
             class="bg-gray-200 resize-none appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
             id="inline-description"
-            type="text"
             placeholder="Description"
             v-model="description"
           />
           <span v-if="errors.description" class="text-red-500 text-xs italic">
             {{ errors.description }}
           </span>
+        </span>
+      </div>
+      <div class="md:flex md:items-center">
+        <label
+          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          for="inline-image"
+        >
+          Image url
+        </label>
+        <span class="container h-10 mb-8">
+          <input
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
+            id="inline-image"
+            type="text"
+            placeholder="Image url"
+            v-model="imageUrl"
+          />
+          <p v-if="errors.image" class="text-red-500 text-xs italic">
+            {{ errors.image }}
+          </p>
         </span>
       </div>
       <div class="md:flex md:items-center justify-center mb-6">
@@ -74,9 +93,11 @@ type DataType = {
   movie: Movie
   title: string
   description: string
+  imageUrl: string
   errors: Errors
   selectedGenres: Array<string>
 }
+const urlPattern = new RegExp('^(http|https)://')
 
 export default Vue.extend({
   name: 'MovieForm',
@@ -89,6 +110,7 @@ export default Vue.extend({
     return {
       title: '',
       description: '',
+      imageUrl: '',
       errors: {},
       movie: {
         id: '',
@@ -114,6 +136,7 @@ export default Vue.extend({
     if (this.selectedMovie) {
       this.title = this.selectedMovie.title
       this.description = this.selectedMovie.description
+      this.imageUrl = this.selectedMovie.img ? this.selectedMovie.img : ''
       for (let key in this.genres) {
         if (this.selectedMovie.tags.find(tag => tag === key)) {
           let value = (this.genres[key] = true)
@@ -134,12 +157,14 @@ export default Vue.extend({
         this.title &&
         this.description &&
         this.description.length < 200 &&
-        this.selectedGenres.length !== 0
+        this.selectedGenres.length !== 0 &&
+        ((this.imageUrl && urlPattern.test(this.imageUrl)) || !this.imageUrl)
       ) {
         if (this.selectedGenres.length) {
           this.movie = {
             id: this.selectedMovie ? this.selectedMovie.id : '',
             title: this.title,
+            img: this.imageUrl,
             description: this.description,
             tags: this.selectedGenres
           }
@@ -160,6 +185,10 @@ export default Vue.extend({
       }
       if (this.selectedGenres.length === 0) {
         this.errors.genre = 'Genre required'
+      }
+
+      if (this.imageUrl && !urlPattern.test(this.imageUrl)) {
+        this.errors.image = 'Add http:// or https:// in front of the url'
       }
     }
   }

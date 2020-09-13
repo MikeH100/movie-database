@@ -64,6 +64,7 @@ export default new Vuex.Store({
         selectedMovie.title = movie.title
         selectedMovie.description = movie.description
         selectedMovie.tags = movie.tags
+        selectedMovie.img = movie.img
       }
     }
   },

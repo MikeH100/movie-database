@@ -1,5 +1,8 @@
 <template>
-  <MovieForm @movie="addMovie" />
+  <span>
+    Add movie
+    <MovieForm @movie="addMovie" />
+  </span>
 </template>
 
 <script lang="ts">

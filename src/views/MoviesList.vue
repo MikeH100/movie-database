@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center pt-8">
+  <div class="flex flex-wrap justify-center">
     <div v-for="movie in movies" :key="movie.title">
       <MovieCard :movie="movie" />
     </div>
