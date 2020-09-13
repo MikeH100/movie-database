@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between items-center flex-wrap bg-teal-500 p-6">
+  <header class="flex justify-between flex-wrap bg-teal-500 p-6">
     <a
       @click="$router.push(homeRoute)"
       class="cursor-pointer text-white text-xl font-semibold"

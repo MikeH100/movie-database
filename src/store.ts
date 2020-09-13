@@ -53,6 +53,7 @@ export default new Vuex.Store({
   },
   mutations: {
     addMovie(state, movie) {
+      movie.id = 'movie' + (state.movies.length + 1)
       state.movies.push(movie)
     },
     editMovie(state, movie) {
@@ -68,7 +69,6 @@ export default new Vuex.Store({
   },
   actions: {
     addMovie(context, movie) {
-      movie.id = 'movie' + (this.state.movies.length + 1)
       context.commit('addMovie', movie)
     },
     editMovie(context, movie) {

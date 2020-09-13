@@ -16,7 +16,7 @@ type DataType = {
 }
 
 export default Vue.extend({
-  name: 'MovieDetails',
+  name: 'EditMovie',
   data(): DataType {
     return {
       title: '',

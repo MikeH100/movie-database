@@ -14,9 +14,9 @@ export default new Router({
       component: MoviesList
     },
     {
-      path: '/movie-details/:id',
-      name: 'Move details',
-      component: () => import('./views/MovieDetails.vue')
+      path: '/edit-movie/:id',
+      name: 'Edit movie',
+      component: () => import('./views/EditMovie.vue')
     },
     {
       path: '/add-movie',

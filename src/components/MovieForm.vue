@@ -1,5 +1,5 @@
 <template>
-  <div class="add-movie-container">
+  <div class="mt-1">
     <form class="w-full p-8">
       <div class="md:flex md:items-center">
         <label
@@ -100,7 +100,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    genres(): Array<string> {
+    genres(): Array<boolean> {
       return this.$store.state.genres.reduce(
         (obj: Object, genre: string) => ({
           ...obj,
@@ -116,7 +116,7 @@ export default Vue.extend({
       this.description = this.selectedMovie.description
       for (let key in this.genres) {
         if (this.selectedMovie.tags.find(tag => tag === key)) {
-          let value = (this.genres[key] = 'true')
+          let value = (this.genres[key] = true)
         }
       }
     }
@@ -165,9 +165,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style scoped lang="scss">
-.add-movie-container {
-  margin-top: 20px;
-}
-</style>

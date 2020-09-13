@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="$router.push(movieDetailsRoute + movie.id)"
+    @click="$router.push(editMovieRoute + movie.id)"
     class="relative max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
   >
     <button
@@ -9,9 +9,9 @@
       Edit
     </button>
     <img
-      class="w-full"
+      class="w-full max-height"
       :src="movie.img ? movie.img : defaultImage"
-      alt="Movie"
+      :alt="movie.title"
     />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">
@@ -38,7 +38,7 @@ import { Movie } from '@/types/types'
 import Routes from '@/constants/routes'
 
 type DataType = {
-  movieDetailsRoute: string
+  editMovieRoute: string
   defaultImage: string
 }
 
@@ -51,7 +51,7 @@ export default Vue.extend({
   },
   data(): DataType {
     return {
-      movieDetailsRoute: Routes.MOVIE_DETAILS,
+      editMovieRoute: Routes.EDIT_MOVIE,
       defaultImage:
         'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
     }
@@ -61,6 +61,10 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .height {
-  height: 500px;
+  height: 32em;
+}
+
+.max-height {
+  max-height: 18em;
 }
 </style>
