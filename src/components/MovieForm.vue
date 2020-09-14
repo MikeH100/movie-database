@@ -1,9 +1,9 @@
 <template>
   <div class="mt-1">
     <form class="w-full p-2">
-      <div class="md:flex md:items-center">
+      <div class="md:flex">
         <label
-          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          class="w-32 mb-0 mt-4 pr-0 md:mb-8 md:mt-2 text-left block text-gray-500 font-bold md:text-right pr-4"
           for="inline-title"
         >
           Title
@@ -21,9 +21,9 @@
           </p>
         </span>
       </div>
-      <div class="md:flex md:items-center">
+      <div class="md:flex">
         <label
-          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          class="w-32 mb-0 mt-4 pr-0 md:mb-8 md:mt-4 text-left block text-gray-500 font-bold md:text-right pr-4"
           for="inline-description"
         >
           Description
@@ -40,9 +40,9 @@
           </span>
         </span>
       </div>
-      <div class="md:flex md:items-center">
+      <div class="md:flex">
         <label
-          class="w-32 mb-8 block text-gray-500 font-bold md:text-right pr-4"
+          class="w-32 mb-0 mt-4 pr-0 md:mb-8 md:mt-2 md:pr-4 text-left block text-gray-500 font-bold md:text-right"
           for="inline-image"
         >
           Image url
