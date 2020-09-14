@@ -1,11 +1,12 @@
 <template>
   <div>
     <Search />
-    <div class="flex flex-wrap justify-center">
-      <div v-for="movie in filteredMovies" :key="movie.title">
+    <div class="flex flex-wrap justify-center" v-if="filteredMovies.length > 0">
+      <div v-for="movie in filteredMovies" :key="movie.id">
         <MovieCard :movie="movie" />
       </div>
     </div>
+    <h1 v-else>No records found</h1>
   </div>
 </template>
 

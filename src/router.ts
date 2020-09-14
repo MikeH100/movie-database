@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MoviesList from './views/MoviesList.vue'
+import EditMovie from './views/EditMovie.vue'
+import AddMovie from './views/AddMovie.vue'
 
 Vue.use(Router)
 
@@ -16,12 +18,12 @@ export default new Router({
     {
       path: '/edit-movie/:id',
       name: 'Edit movie',
-      component: () => import('./views/EditMovie.vue')
+      component: EditMovie
     },
     {
       path: '/add-movie',
       name: 'Add movie',
-      component: () => import('./views/AddMovie.vue')
+      component: AddMovie
     }
   ]
 })

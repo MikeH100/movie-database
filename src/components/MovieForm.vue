@@ -96,6 +96,7 @@ type DataType = {
   errors: Errors
   selectedGenres: Array<string>
 }
+
 const urlPattern = new RegExp('^(http|https)://')
 
 export default Vue.extend({
@@ -180,14 +181,14 @@ export default Vue.extend({
         this.errors.description = 'Description required.'
       }
       if (this.description.length > 200) {
-        this.errors.description = 'Number of characters cannot exceed 200'
+        this.errors.description = 'Number of characters cannot exceeds 200.'
       }
       if (this.selectedGenres.length === 0) {
-        this.errors.genre = 'Genre required'
+        this.errors.genre = 'Genre required.'
       }
 
       if (this.imageUrl && !urlPattern.test(this.imageUrl)) {
-        this.errors.image = 'Add http:// or https:// in front of the url'
+        this.errors.image = 'Add http:// or https:// in front of the url.'
       }
     }
   }

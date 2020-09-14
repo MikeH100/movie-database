@@ -2,7 +2,7 @@
   <header class="flex justify-between flex-wrap bg-teal-500 p-6">
     <a
       @click="redirectHome"
-      class="cursor-pointer text-white text-xl font-semibold"
+      class="cursor-pointer text-white text-xl font-semibold mt-2"
     >
       Movie database
     </a>

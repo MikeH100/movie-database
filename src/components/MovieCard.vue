@@ -1,7 +1,7 @@
 <template>
   <div
     @click="$router.push(editMovieRoute + movie.id)"
-    class="relative max-w-sm rounded overflow-hidden m-4 height shadow-lg cursor-pointer"
+    class="relative max-w-sm rounded overflow-hidden m-4 dimensions shadow-lg cursor-pointer"
   >
     <button
       class="absolute m-2 bg-teal-500 hover:bg-teal-400 text-white text-xs font-bold py-2 px-4 rounded right-0"
@@ -9,7 +9,7 @@
       Edit
     </button>
     <img
-      class="w-full max-height"
+      class="w-full limited-dimensions"
       :src="movie.img ? movie.img : defaultImage"
       :alt="movie.title"
     />
@@ -36,6 +36,7 @@
 import Vue from 'vue'
 import { Movie } from '@/types/types'
 import Routes from '@/constants/routes'
+import Images from '@/constants/images'
 
 type DataType = {
   editMovieRoute: string
@@ -52,19 +53,20 @@ export default Vue.extend({
   data(): DataType {
     return {
       editMovieRoute: Routes.EDIT_MOVIE,
-      defaultImage:
-        'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+      defaultImage: Images.DEFAULT_IMAGE
     }
   }
 })
 </script>
 
 <style scoped lang="scss">
-.height {
+.dimensions {
   height: 32em;
+  width: 30em;
 }
 
-.max-height {
-  max-height: 18em;
+.limited-dimensions {
+  min-height: 10em;
+  max-height: 16em;
 }
 </style>
