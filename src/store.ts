@@ -12,7 +12,7 @@ export default new Vuex.Store({
         title: 'Jurassic Park',
         description:
           "A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
-        tags: ['Action', 'Drama'],
+        tags: ['Action', 'Drama', 'Fantasy', 'Horror'],
         img:
           'https://images-na.ssl-images-amazon.com/images/I/51EeZ5y%2Bu5L._AC_SL1024_.jpg'
       },

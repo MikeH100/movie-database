@@ -61,8 +61,8 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .dimensions {
-  height: 32em;
-  width: 30em;
+  height: 36em;
+  min-width: 22em;
 }
 
 .limited-dimensions {
